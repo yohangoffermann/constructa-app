@@ -151,8 +151,6 @@ const APP = {
     setupCharts() {
         if (window.ApexCharts) {
             this.setupTimelineChart();
-            this.setupCashFlowChart();
-            this.setupMetricsChart();
         }
     },
 
