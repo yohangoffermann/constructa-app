@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/components.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Adicionar FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
@@ -15,7 +17,7 @@
             <div class="nav-content">
                 <div class="logo">Constructa</div>
                 <ul class="nav-items">
-                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#dashboard" class="active">Dashboard</a></li>
                     <li><a href="#analysis">Análise</a></li>
                     <li><a href="#simulation">Simulação</a></li>
                 </ul>
@@ -23,21 +25,72 @@
         </nav>
 
         <main class="main-content">
-            <section class="kpi-section">
-                <div class="kpi-grid">
-                    <!-- KPIs serão inseridos via JavaScript -->
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="kpi-section">
+                    <div class="kpi-grid">
+                        <!-- KPIs serão inseridos via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <div class="timeline-container">
+                        <!-- Timeline será inserido via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-container">
+                        <div id="mainChart"></div>
+                    </div>
                 </div>
             </section>
 
-            <section class="timeline-section">
-                <div class="timeline-container">
-                    <!-- Timeline será inserido via JavaScript -->
-                </div>
-            </section>
-
-            <section class="analysis-section">
+            <!-- Analysis Section -->
+            <section id="analysis" class="section">
                 <div class="analysis-grid">
-                    <!-- Análise será inserida via JavaScript -->
+                    <div class="analysis-card">
+                        <div id="cashFlowChart"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div id="metricsChart"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <div id="efficiencyChart"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simulation Section -->
+            <section id="simulation" class="section">
+                <div class="simulator-container">
+                    <form id="simulationForm" class="simulation-form">
+                        <div class="form-group">
+                            <label for="creditValue">Valor do Crédito</label>
+                            <input type="number" id="creditValue" name="creditValue" 
+                                   min="200000" step="10000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="term">Prazo (meses)</label>
+                            <input type="number" id="term" name="term" 
+                                   min="24" max="240" step="12" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="downPayment">Lance (%)</label>
+                            <input type="number" id="downPayment" name="downPayment" 
+                                   min="20" max="70" step="1" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-calculator"></i> Simular
+                        </button>
+                    </form>
+
+                    <div id="simulationResults" class="simulation-results hidden">
+                        <!-- Resultados serão inseridos via JavaScript -->
+                    </div>
                 </div>
             </section>
         </main>
