@@ -90,6 +90,14 @@ const APP = {
         if (form) {
             form.addEventListener('submit', (e) => this.handleSimulation(e));
         }
+
+        // Controles de visualização
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const view = e.target.closest('.btn-view').dataset.view;
+                this.toggleView(e.target.closest('.analysis-card'), view);
+            });
+        });
     },
 
     // Navegação
@@ -151,6 +159,9 @@ const APP = {
     setupCharts() {
         if (window.ApexCharts) {
             this.setupTimelineChart();
+            this.setupCashFlowChart();
+            this.setupEfficiencyChart();
+            this.setupExposureChart();
         }
     },
 
@@ -219,6 +230,118 @@ const APP = {
         this.state.charts.timeline.render();
     },
 
+    setupCashFlowChart() {
+        const element = document.getElementById('cashFlowChart');
+        if (!element) return;
+
+        const options = {
+            chart: {
+                type: 'area',
+                height: 350,
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Entradas',
+                data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+            }, {
+                name: 'Saídas',
+                data: [20, 35, 40, 45, 39, 52, 65, 85, 110]
+            }],
+            xaxis: {
+                categories: ['M1', 'M6', 'M12', 'M18', 'M24', 'M30', 'M36', 'M42', 'M48']
+            },
+            colors: [this.config.colors.success, this.config.colors.danger],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.3
+                }
+            }
+        };
+
+        this.state.charts.cashFlow = new ApexCharts(element, options);
+        this.state.charts.cashFlow.render();
+    },
+
+    setupEfficiencyChart() {
+        const element = document.getElementById('efficiencyChart');
+        if (!element) return;
+
+        const options = {
+            chart: {
+                type: 'radialBar',
+                height: 350
+            },
+            series: [92],
+            labels: ['Eficiência'],
+            colors: [this.config.colors.primary],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        size: '70%'
+                    },
+                    dataLabels: {
+                        show: true,
+                        name: {
+                            show: true,
+                            fontSize: '16px',
+                            fontWeight: 600,
+                            color: this.config.colors.primary
+                        },
+                        value: {
+                            show: true,
+                            fontSize: '24px',
+                            fontWeight: 700,
+                            formatter: function (val) {
+                                return val + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        this.state.charts.efficiency = new ApexCharts(element, options);
+        this.state.charts.efficiency.render();
+    },
+
+    setupExposureChart() {
+        const element = document.getElementById('exposureChart');
+        if (!element) return;
+
+        const options = {
+            chart: {
+                type: 'line',
+                height: 350,
+                toolbar: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Exposição',
+                data: [33, 35, 30, 25, 20, 15, 10, 5, 0]
+            }],
+            xaxis: {
+                categories: ['M1', 'M6', 'M12', 'M18', 'M24', 'M30', 'M36', 'M42', 'M48']
+            },
+            colors: [this.config.colors.warning],
+            stroke: {
+                curve: 'smooth',
+                width: 3
+            },
+            markers: {
+                size: 4
+            }
+        };
+
+        this.state.charts.exposure = new ApexCharts(element, options);
+        this.state.charts.exposure.render();
+    },
+
     // Simulação
     handleSimulation(e) {
         e.preventDefault();
@@ -283,7 +406,7 @@ const APP = {
     },
 
     showError(message) {
-        alert(message); // Implementar melhor feedback visual
+        alert(message);
     },
 
     showResults(results) {
@@ -310,6 +433,19 @@ const APP = {
                 </div>
             </div>
         `;
+    },
+
+    toggleView(card, view) {
+        const chartContainer = card.querySelector('.chart-container');
+        const tableContainer = card.querySelector('.table-container');
+
+        if (view === 'chart') {
+            chartContainer?.classList.remove('hidden');
+            tableContainer?.classList.add('hidden');
+        } else {
+            chartContainer?.classList.add('hidden');
+            tableContainer?.classList.remove('hidden');
+        }
     },
 
     updateSection(sectionId) {
