@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructa App</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="main-nav">
+            <div class="nav-content">
+                <div class="logo">Constructa</div>
+                <ul class="nav-items">
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#analysis">Análise</a></li>
+                    <li><a href="#simulation">Simulação</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <section class="kpi-section">
+                <div class="kpi-grid">
+                    <!-- KPIs serão inseridos via JavaScript -->
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <div class="timeline-container">
+                    <!-- Timeline será inserido via JavaScript -->
+                </div>
+            </section>
+
+            <section class="analysis-section">
+                <div class="analysis-grid">
+                    <!-- Análise será inserida via JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/main.js" type="module"></script>
+</body>
+</html>
