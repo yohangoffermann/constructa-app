@@ -48,14 +48,67 @@
             <!-- Analysis Section -->
             <section id="analysis" class="section">
                 <div class="analysis-grid">
+                    <!-- Fluxo de Caixa -->
                     <div class="analysis-card">
+                        <div class="card-header">
+                            <h3>Fluxo de Caixa</h3>
+                            <div class="card-controls">
+                                <button class="btn-view" data-view="chart">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                                <button class="btn-view" data-view="table">
+                                    <i class="fas fa-table"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div id="cashFlowChart"></div>
                     </div>
+
+                    <!-- Indicadores -->
                     <div class="analysis-card">
-                        <div id="metricsChart"></div>
+                        <div class="card-header">
+                            <h3>Indicadores</h3>
+                        </div>
+                        <div class="indicators-grid">
+                            <div class="indicator">
+                                <span class="indicator-label">P/C Ratio</span>
+                                <span class="indicator-value">0.55%</span>
+                                <span class="indicator-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 2.3%
+                                </span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">ROE Projetado</span>
+                                <span class="indicator-value">24%</span>
+                                <span class="indicator-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 5%
+                                </span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">Payback</span>
+                                <span class="indicator-value">30 meses</span>
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-label">TIR</span>
+                                <span class="indicator-value">18.5%</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Eficiência -->
                     <div class="analysis-card">
+                        <div class="card-header">
+                            <h3>Análise de Eficiência</h3>
+                        </div>
                         <div id="efficiencyChart"></div>
+                    </div>
+
+                    <!-- Exposição -->
+                    <div class="analysis-card">
+                        <div class="card-header">
+                            <h3>Exposição e Risco</h3>
+                        </div>
+                        <div id="exposureChart"></div>
                     </div>
                 </div>
             </section>
